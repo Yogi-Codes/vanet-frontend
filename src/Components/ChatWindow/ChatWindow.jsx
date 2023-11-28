@@ -29,6 +29,7 @@ function ChatWindow() {
       if(nearbyPoints!=res.data){
 
         setX(false);
+        
         setNearbyPoints(res.data);
        setTimeout(() => {
         if(res.data.length>0){

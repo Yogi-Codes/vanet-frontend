@@ -15,12 +15,20 @@ import TileLayer from "ol/layer/Tile";
 import OverlayPositioning from "ol/OverlayPositioning";
 import './Map.css';
 import img from "./icon.png";
+const EPSG_CODE = 'EPSG:4326';
+const KALYANI_COORDINATES = fromLonLat([88.3218228, 22.4813564], EPSG_CODE);
+const DEFAULT_ZOOM_LEVEL = 10;
 
 const MyMap = (props) => {
-    const { points = [], zoomLevel = 14 } = props;
+    const { points = [], zoomLevel =14 } = props;
     const [shouldRenderMap, setShouldRenderMap] = useState(true);
 
-    const locations = points.map(point => fromLonLat([point.lng, point.lat]));
+    const locations = points.map((point) => {
+        const lng = parseFloat(point.lng); // Convert point.lng to number
+        const lat = parseFloat(point.lat); // Convert point.lat to number
+        return fromLonLat([lng, lat]);
+      });
+      
 
     const mapRef = useRef(null);
     const popupRefs = useRef(points.map(() => React.createRef()));
@@ -65,11 +73,43 @@ const MyMap = (props) => {
                 <div>
                     <div ref={mapRef} className='my-map'></div>
                     {points.map((point, index) => (
-                        <div style={{backgroundColor:point.content.includes("Danger")?"red":"whitesmoke"}} key={index} ref={popupRefs.current[index]} className="ol-popup">
-                            <span ref={closeButtonRefs.current[index]} className="ol-popup-closer"></span>
-                            <h4 style={{color:point.content.includes("Danger")?"white":"black"}}>{point.title}</h4>
-                            <p style={{color:point.content.includes("Danger")?"white":"black"}}>Mode:{point.content}</p>
-                        </div>
+                        <div
+  style={{
+    backgroundColor: point.content.includes("Danger") ? "#f44336" : "#f5f5f5",
+    borderRadius: 10,
+    padding: 15,
+    boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.2)",
+  }}
+  key={index}
+  ref={popupRefs.current[index]}
+  className="ol-popup"
+>
+  <span
+    ref={closeButtonRefs.current[index]}
+    className="ol-popup-closer"
+    style={{
+      position: "absolute",
+      top: 10,
+      right: 10,
+      cursor: "pointer",
+    }}
+  ></span>
+
+  <h4
+    style={{
+      color: point.content.includes("Danger") ? "#fff" : "#000",
+      fontSize: 20,
+      marginBottom: 10,
+    }}
+  >
+    {point.title}
+  </h4>
+
+  <p style={{ color: point.content.includes("Danger") ? "#fff" : "#000" }}>
+    Mode: {point.content}
+  </p>
+</div>
+
                     ))}
                 </div>
             )}
