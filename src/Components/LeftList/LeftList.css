@@ -1,0 +1,89 @@
+.leftList {
+    height: 100vh;
+    width: 300px;
+    overflow: hidden;
+    background-image: url("bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    color: whitesmoke;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.5) rgba(54, 54, 54, 0.5);
+    &::-webkit-scrollbar {
+        width: 12px;
+      }
+    
+      &::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.5);
+      }
+    
+      &::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 6px;
+        border: 3px solid transparent;
+      }
+    
+      &::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.7);
+      }
+  }
+  
+  .header {
+    text-align: center;
+    padding: 20px 0;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .listContainer {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+  }
+  
+  .listItem {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s;
+  }
+  .logout {
+    background-color: rgb(52, 52, 22);
+    color: white; 
+    padding: 10px;
+    text-align: center;
+    transition: background-color 0.3s;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+
+.logout::before {
+    content: '\2190'; 
+    font-weight: bold;
+    cursor: pointer;
+}
+.close::before {
+  content: '\2715'; /* Unicode character for a close cross */
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+
+  
+  .listItem:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  
