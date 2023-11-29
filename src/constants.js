@@ -1,5 +1,5 @@
 let Url ={
-    server:"http://localhost:5000"
+    server:"https://tiny-ruby-jackrabbit-belt.cyclic.app/"
 }
 
 const locations = [
